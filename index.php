@@ -310,6 +310,62 @@
       </div>
     </section>
    
+    <!-- AI Features Section -->
+    <section class="p-t-b-150" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+      <div class="container">
+        <div class="heading-block" style="color: white;">
+          <h2 style="color: white;">🤖 AI-Powered Healthcare</h2>
+          <hr style="border-color: white;">
+          <span style="color: white;">Experience cutting-edge AI technology for better health outcomes and personalized care</span>
+        </div>
+        
+        <div class="services">
+          <div class="row">
+            <!-- AI Service 1 -->
+            <div class="col-md-4">
+              <article style="background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px;">
+                <div style="text-align: center; font-size: 3em; margin-bottom: 15px;">🩺</div>
+                <div class="media-body">
+                  <h6 style="text-align: center; color: #667eea;">Dr. Cares AI</h6>
+                  <p style="text-align: center;">Get AI-powered symptom analysis, medication recommendations, and personalized health advice 24/7.</p>
+                  <div style="text-align: center;">
+                    <a href="ai_dr_cares.php" class="btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">Try Now</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            
+            <!-- AI Service 2 -->
+            <div class="col-md-4">
+              <article style="background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px;">
+                <div style="text-align: center; font-size: 3em; margin-bottom: 15px;">💬</div>
+                <div class="media-body">
+                  <h6 style="text-align: center; color: #667eea;">AI Chatbot Assistant</h6>
+                  <p style="text-align: center;">Chat with our intelligent health assistant for instant answers to your health questions and guidance.</p>
+                  <div style="text-align: center;">
+                    <a href="ai_chatbot.php" class="btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">Chat Now</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+            
+            <!-- AI Service 3 -->
+            <div class="col-md-4">
+              <article style="background: white; padding: 30px; border-radius: 15px; margin-bottom: 20px;">
+                <div style="text-align: center; font-size: 3em; margin-bottom: 15px;">📊</div>
+                <div class="media-body">
+                  <h6 style="text-align: center; color: #667eea;">Health Trends & Monitoring</h6>
+                  <p style="text-align: center;">Track your health metrics with visual analytics and get AI-powered insights for chronic disease management.</p>
+                  <div style="text-align: center;">
+                    <a href="ai_health_trends.php" class="btn" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">View Trends</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     
     
   </div>

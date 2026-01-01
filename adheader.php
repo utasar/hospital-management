@@ -184,6 +184,14 @@ $tim = date("H:i:s");
                         </ul>
                     </li>
 
+                    <li><a href="javascript:void(0);" class="menu-toggle"><i
+                                class="zmdi zmdi-memory"></i><span>AI Features</span> </a>
+                        <ul class="ml-menu">
+                            <li><a href="ai_doctor_dashboard.php">AI Patient Insights</a></li>
+                            <li><a href="ai_chatbot.php">AI Chatbot</a></li>
+                        </ul>
+                    </li>
+
                     <li> <a href="viewdoctorconsultancycharge.php"><i class="zmdi zmdi-copy"></i><span>Income
                                 Report</span> </a></li>
 
@@ -243,10 +251,18 @@ $tim = date("H:i:s");
                                 class="zmdi zmdi-account-o"></i><span>Treatment</span> </a>
                         <ul class="ml-menu">
                             <li><a href="viewtreatmentrecord.php">View Treatment Records</a></li>
+                        </ul>
                     </li>
-                </ul>
-                </li>
 
+                    <li><a href="javascript:void(0);" class="menu-toggle"><i
+                                class="zmdi zmdi-memory"></i><span>AI Health Assistant</span> </a>
+                        <ul class="ml-menu">
+                            <li><a href="ai_dr_cares.php">Dr. Cares AI</a></li>
+                            <li><a href="ai_chatbot.php">AI Chatbot</a></li>
+                            <li><a href="ai_health_trends.php">Health Trends</a></li>
+                            <li><a href="ai_disease_monitoring.php">Disease Monitoring</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>

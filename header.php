@@ -93,6 +93,7 @@ $tim = date("H:i:s");
             <li> <a href="index.php">Home </a></li>
             <li><a href="about.php">About</a></li>            
             <li><a href="patientappointment.php">Appointment </a></li>
+            <li><a href="ai_dr_cares.php">AI Health Assistant</a></li>
             <li><a href="contact.php">Contact </a></li>
             <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Log In </a>
               <ul class="dropdown-menu multi-level" style="display: none;">
