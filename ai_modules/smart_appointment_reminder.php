@@ -82,21 +82,21 @@ class SmartAppointmentReminder {
         switch($priority) {
             case 'high':
                 // High priority: 7 days, 3 days, 1 day, 3 hours before
-                $reminders[] = $appointmentDate->modify('-7 days')->format('Y-m-d H:i:s');
-                $reminders[] = $appointmentDate->modify('+4 days')->modify('-3 days')->format('Y-m-d H:i:s');
-                $reminders[] = $appointmentDate->modify('+2 days')->modify('-1 day')->format('Y-m-d H:i:s');
-                $reminders[] = $appointmentDate->modify('+1 day')->modify('-3 hours')->format('Y-m-d H:i:s');
+                $reminders[] = (clone $appointmentDate)->modify('-7 days')->format('Y-m-d H:i:s');
+                $reminders[] = (clone $appointmentDate)->modify('-3 days')->format('Y-m-d H:i:s');
+                $reminders[] = (clone $appointmentDate)->modify('-1 day')->format('Y-m-d H:i:s');
+                $reminders[] = (clone $appointmentDate)->modify('-3 hours')->format('Y-m-d H:i:s');
                 break;
                 
             case 'medium':
                 // Medium priority: 3 days, 1 day before
-                $reminders[] = $appointmentDate->modify('-3 days')->format('Y-m-d H:i:s');
-                $reminders[] = $appointmentDate->modify('+2 days')->modify('-1 day')->format('Y-m-d H:i:s');
+                $reminders[] = (clone $appointmentDate)->modify('-3 days')->format('Y-m-d H:i:s');
+                $reminders[] = (clone $appointmentDate)->modify('-1 day')->format('Y-m-d H:i:s');
                 break;
                 
             default:
                 // Normal priority: 1 day before
-                $reminders[] = $appointmentDate->modify('-1 day')->format('Y-m-d H:i:s');
+                $reminders[] = (clone $appointmentDate)->modify('-1 day')->format('Y-m-d H:i:s');
                 break;
         }
         

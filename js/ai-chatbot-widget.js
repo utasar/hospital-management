@@ -192,10 +192,10 @@ class AIChatbotWidget {
 
 // Initialize chatbot when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Only initialize if user is logged in (check for session indicators)
-    const isLoggedIn = document.body.classList.contains('logged-in') || 
-                       document.querySelector('[data-user-type]') !== null;
+    // Note: This widget can be used by all users for general queries
+    // For personalized features, users should be logged in
+    // The backend (ai_chatbot.php) enforces login requirements for full access
     
-    // Initialize chatbot widget
+    // Initialize chatbot widget for all users
     new AIChatbotWidget();
 });

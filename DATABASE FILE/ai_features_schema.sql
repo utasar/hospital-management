@@ -122,12 +122,14 @@ CREATE TABLE IF NOT EXISTS `ai_appointment_reminders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Table for AI model configurations
+-- IMPORTANT: API keys should be stored encrypted in production
+-- Use AES_ENCRYPT() when inserting and AES_DECRYPT() when retrieving
 CREATE TABLE IF NOT EXISTS `ai_model_config` (
   `config_id` int(10) NOT NULL AUTO_INCREMENT,
   `model_name` varchar(100) NOT NULL,
   `model_type` varchar(100) NOT NULL,
   `endpoint_url` varchar(255) DEFAULT NULL,
-  `api_key` varchar(255) DEFAULT NULL,
+  `api_key` varbinary(500) DEFAULT NULL COMMENT 'Encrypted API key - use AES_ENCRYPT/AES_DECRYPT',
   `configuration` text,
   `is_active` tinyint(1) DEFAULT 1,
   `last_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

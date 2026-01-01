@@ -15,21 +15,72 @@ if(isset($_POST['add_monitoring'])) {
     $diseaseName = mysqli_real_escape_string($con, $_POST['disease_name']);
     $vitalSigns = mysqli_real_escape_string($con, $_POST['vital_signs']);
     
-    // Simple anomaly detection based on vital signs
+    // Anomaly detection with numerical analysis
     $alertTriggered = 0;
     $alertReason = '';
     $status = 'Normal';
     
-    // Check for anomalies (simplified logic)
+    // Extract numerical values and check against thresholds
+    // This is a simplified example - production should use ML models
     $vitalSignsLower = strtolower($vitalSigns);
-    if(strpos($vitalSignsLower, 'high') !== false || strpos($vitalSignsLower, 'elevated') !== false) {
-        $alertTriggered = 1;
-        $alertReason = 'Elevated vital signs detected. Please consult your doctor.';
-        $status = 'Alert';
-    } elseif(strpos($vitalSignsLower, 'low') !== false) {
-        $alertTriggered = 1;
-        $alertReason = 'Low vital signs detected. Please monitor closely.';
-        $status = 'Warning';
+    
+    // Blood pressure detection (e.g., "BP: 160/100" or "Blood Pressure: 160/100")
+    if(preg_match('/(\d{2,3})\s*\/\s*(\d{2,3})/', $vitalSigns, $bpMatches)) {
+        $systolic = intval($bpMatches[1]);
+        $diastolic = intval($bpMatches[2]);
+        
+        if($systolic >= 140 || $diastolic >= 90) {
+            $alertTriggered = 1;
+            $alertReason = "High blood pressure detected ($systolic/$diastolic mmHg). Please consult your doctor.";
+            $status = 'Alert';
+        } elseif($systolic < 90 || $diastolic < 60) {
+            $alertTriggered = 1;
+            $alertReason = "Low blood pressure detected ($systolic/$diastolic mmHg). Please monitor closely.";
+            $status = 'Warning';
+        }
+    }
+    
+    // Blood sugar detection (e.g., "Blood Sugar: 250 mg/dL")
+    if(preg_match('/(\d{2,3})\s*(mg\/dl|mmol)/i', $vitalSigns, $bsMatches)) {
+        $bloodSugar = intval($bsMatches[1]);
+        
+        if($bloodSugar > 180) {
+            $alertTriggered = 1;
+            $alertReason = "High blood sugar level detected ($bloodSugar mg/dL). Please consult your doctor.";
+            $status = 'Alert';
+        } elseif($bloodSugar < 70) {
+            $alertTriggered = 1;
+            $alertReason = "Low blood sugar level detected ($bloodSugar mg/dL). Please take action immediately.";
+            $status = 'Alert';
+        }
+    }
+    
+    // Heart rate detection (e.g., "Heart Rate: 110 bpm")
+    if(preg_match('/(\d{2,3})\s*bpm/i', $vitalSigns, $hrMatches)) {
+        $heartRate = intval($hrMatches[1]);
+        
+        if($heartRate > 100) {
+            $alertTriggered = 1;
+            $alertReason = "Elevated heart rate detected ($heartRate bpm). Please monitor closely.";
+            $status = 'Warning';
+        } elseif($heartRate < 60) {
+            $alertTriggered = 1;
+            $alertReason = "Low heart rate detected ($heartRate bpm). Please consult your doctor if symptomatic.";
+            $status = 'Warning';
+        }
+    }
+    
+    // Fallback to keyword detection if no numerical values found
+    if(!$alertTriggered) {
+        if(strpos($vitalSignsLower, 'high') !== false || strpos($vitalSignsLower, 'elevated') !== false) {
+            $alertTriggered = 1;
+            $alertReason = 'Elevated vital signs detected. Please consult your doctor.';
+            $status = 'Alert';
+        } elseif(strpos($vitalSignsLower, 'low') !== false) {
+            $alertTriggered = 1;
+            $alertReason = 'Low vital signs detected. Please monitor closely.';
+            $status = 'Warning';
+        }
     }
     
     $sql = "INSERT INTO ai_chronic_disease_monitoring 

@@ -30,9 +30,18 @@ class AIAPIHandler {
     
     /**
      * Analyze symptoms using AI
-     * @param array $symptoms Array of symptom descriptions
-     * @param int $patientId Patient ID
-     * @return array Analysis results
+     * 
+     * This function processes patient-reported symptoms and provides preliminary analysis.
+     * In production, this should call actual ML models via API.
+     * 
+     * @param array|string $symptoms Array of symptom descriptions or single symptom string
+     * @param int $patientId Patient ID for tracking and record-keeping
+     * @return array Analysis results containing:
+     *               - analysis_id: Database ID of the stored analysis
+     *               - diagnosis: AI-generated preliminary diagnosis text
+     *               - confidence: Confidence score (0.0 to 1.0)
+     *               - recommendations: Array of recommended actions
+     * @throws mysqli_sql_exception If database operation fails
      */
     public function analyzeSymptoms($symptoms, $patientId) {
         // Simulate AI analysis (in production, this would call actual AI model)

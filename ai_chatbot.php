@@ -254,7 +254,7 @@ $conversations = array_reverse($conversations);
         <div class="message bot">
             <div class="bot-avatar">🤖</div>
             <div class="message-content">
-                <div><?php echo htmlspecialchars($conv['response']); ?></div>
+                <div><?php echo nl2br(htmlspecialchars($conv['response'])); ?></div>
                 <div class="message-time"><?php echo date('H:i', strtotime($conv['created_at'])); ?></div>
             </div>
         </div>
@@ -274,7 +274,7 @@ $conversations = array_reverse($conversations);
         <div class="message bot">
             <div class="bot-avatar">🤖</div>
             <div class="message-content">
-                <div><?php echo htmlspecialchars($chatResponse['response']); ?></div>
+                <div><?php echo nl2br(htmlspecialchars($chatResponse['response'])); ?></div>
                 <div class="message-time">Just now</div>
             </div>
         </div>
