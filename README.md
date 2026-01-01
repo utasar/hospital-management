@@ -18,9 +18,20 @@ This project involves:
 
 ## Features
 
+### Core Features
 - Manage patient records and history easily.
 - Schedule, assign, and monitor doctor and staff shifts.
 - Simplify hospital workflows to improve operational efficiency.
+
+### AI-Powered Features ✨ NEW
+- **Dr. Cares AI Module**: AI-powered symptom analysis, medication recommendations, and preventive care advice
+- **Intelligent Chatbot**: 24/7 virtual health assistant for patient interaction
+- **Health Trends & Analytics**: Visual health monitoring with trend analysis and personalized lifestyle recommendations
+- **Chronic Disease Monitoring**: Real-time monitoring with automated alerts for anomalies
+- **Doctor AI Dashboard**: AI insights and patient health summaries for healthcare providers
+- **Smart Appointment Reminders**: Adaptive reminder system based on patient health conditions
+
+📖 **See [AI_FEATURES_README.md](AI_FEATURES_README.md) for detailed AI features documentation**
 
 ## How to Use
 
@@ -40,11 +51,52 @@ This project involves:
    - Access the frontend:
      Open your browser and go to the local instance of the system (e.g., `http://localhost:3000`).
 
-## Future Plans
+## Setup Instructions
 
-- **Advanced Reporting Dashboards**: Integrate analytics for better decision-making and performance monitoring.
-- **AI Integration**: Use AI to schedule staff and allocate resources dynamically based on hospital requirements.
-- **Telehealth Features**: Add support for virtual patient-doctor interactions and remote healthcare monitoring.
-- **Multi-Hospital Support**: Enable management of multiple branches within one centralized system.
+### Database Setup
+1. Import the main database schema:
+   ```bash
+   mysql -u root -p ohmsphp < "DATABASE FILE/ohmsphp.sql"
+   ```
 
-This solution focuses on scalability and improving hospital operational workflows, with room to integrate future advancements as the system evolves.
+2. Import the AI features schema:
+   ```bash
+   mysql -u root -p ohmsphp < "DATABASE FILE/ai_features_schema.sql"
+   ```
+
+### Configuration
+1. Update database connection in `dbconnection.php` with your credentials
+2. Ensure PHP 5.6 or newer is installed
+3. Configure web server (Apache/Nginx) to serve the application
+
+### Accessing the System
+- **Admin Login**: `admin` / `Password@123`
+- **Main Interface**: Navigate to your configured URL (e.g., `http://localhost/hospital-management`)
+- **AI Features**: Access via patient/doctor dashboards after login
+
+## Technology Stack
+
+- **Backend**: PHP (5.6+), MySQL
+- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap
+- **AI Features**: Custom AI algorithms, Chart.js for visualizations
+- **Security**: Prepared statements, session management, HIPAA/GDPR compliance considerations
+
+## Future Enhancements
+
+- **Machine Learning Integration**: Connect to TensorFlow/PyTorch models for advanced predictions
+- **Telehealth Features**: Video consultations and remote patient monitoring
+- **Multi-Hospital Support**: Enable management of multiple branches
+- **Mobile Apps**: iOS and Android applications
+- **IoT Integration**: Support for wearable devices and health monitors
+
+## Contributing
+
+Contributions are welcome! Please ensure any AI features maintain HIPAA/GDPR compliance standards.
+
+## License
+
+See LICENSE file for details.
+
+---
+
+This solution focuses on scalability and improving hospital operational workflows with cutting-edge AI technology to enhance patient care and doctor efficiency.
