@@ -23,7 +23,7 @@ This project involves:
 - Schedule, assign, and monitor doctor and staff shifts.
 - Simplify hospital workflows to improve operational efficiency.
 
-### AI-Powered Features ✨ NEW
+### AI-Powered Features NEW
 - **Dr. Cares AI Module**: AI-powered symptom analysis, medication recommendations, and preventive care advice
 - **Intelligent Chatbot**: 24/7 virtual health assistant for patient interaction
 - **Health Trends & Analytics**: Visual health monitoring with trend analysis and personalized lifestyle recommendations
@@ -93,10 +93,5 @@ This project involves:
 
 Contributions are welcome! Please ensure any AI features maintain HIPAA/GDPR compliance standards.
 
-## License
-
-See LICENSE file for details.
-
----
 
 This solution focuses on scalability and improving hospital operational workflows with cutting-edge AI technology to enhance patient care and doctor efficiency.
