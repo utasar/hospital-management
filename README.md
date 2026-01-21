@@ -31,7 +31,7 @@ This project involves:
 - **Doctor AI Dashboard**: AI insights and patient health summaries for healthcare providers
 - **Smart Appointment Reminders**: Adaptive reminder system based on patient health conditions
 
-📖 **See [AI_FEATURES_README.md](AI_FEATURES_README.md) for detailed AI features documentation**
+ **See [AI_FEATURES_README.md](AI_FEATURES_README.md) for detailed AI features documentation**
 
 ## How to Use
 
