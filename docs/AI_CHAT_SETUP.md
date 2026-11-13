@@ -11,7 +11,7 @@ The GitHub Pages showcase is static, so it cannot run the private AI API key or 
    - Name: `OPENAI_API_KEY`
    - Value: your OpenAI API key (keep it secret; never put it in the website source)
    - Environments: Production (and Preview if you want preview deployments)
-5. Optionally add `OPENAI_MODEL` with a model available to your API project. The default is `gpt-5.5`.
+5. Optionally add `OPENAI_MODEL` with a model available to your API project. The default is `gpt-6-luna`.
 6. Deploy. The chat endpoint will be `https://YOUR-VERCEL-PROJECT.vercel.app/api/chat`.
 
 ## Connect the GitHub Pages page
@@ -26,7 +26,7 @@ The endpoint currently allows the GitHub Pages origin `https://utasar.github.io`
 
 - The chat is a general health-information education demo. It can explain common symptoms, low-risk self-care, and OTC medicine label concepts, but it must not diagnose, prescribe, select an individual medicine, or calculate a personal dose.
 - Emergency symptoms must be directed to 911 in the US (or the local emergency number elsewhere).
-- Do not enter names, contact details, patient details, medical records, passwords, or payment information.
+- Chat messages are sent to the OpenAI API to generate responses; `store: false` is set on the Responses API request. Do not enter names, contact details, patient details, medical records, passwords, or payment information. Review OpenAI API data controls and terms before public launch.
 - The API uses OpenAI web search for current health information. The assistant is instructed to prefer authoritative public-health sources such as MedlinePlus/NIH, FDA, CDC, NHS, and major academic medical centers.
 - The API key is read only by the server from Vercel environment variables.
 - The included in-memory request limit is a lightweight safeguard, not a production-grade abuse-control system; Vercel serverless instances may not share counters. Set provider spending limits and usage alerts, and add a persistent rate limiter before broad public promotion.
