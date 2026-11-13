@@ -1,10 +1,13 @@
-# .gitignore
+# Local environment and secrets
 .env
 .env.*
 !.env.example
+
+# Dependencies and generated files
 /vendor/
-composer.lock
 *.log
 php_errors.log
 .DS_Store
 .phpunit.result.cache
+
+# Do not ignore composer.lock: commit it if Composer is introduced.
