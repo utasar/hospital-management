@@ -25,7 +25,7 @@
           <h1>Hospital workflows, made <span>clearer.</span></h1>
           <p class="lead">A software project exploring how a small clinic can organize appointments, teams, and patient-service workflows in one place. This public page is a portfolio showcase—not a healthcare service.</p>
           <div class="actions"><a class="button primary" href="#demo">Try the sample interaction</a><a class="button" href="https://github.com/utasar/hospital-management">View source on GitHub</a></div>
-          <div class="notice"><strong>Demo only:</strong> This project is not for real medical records, diagnosis, treatment, or emergency use. Use fictional information only. No information entered on this showcase page is sent or saved.</div>
+          <div class="notice"><strong>Health information only:</strong> Careflow shares general educational information about symptoms and medicines. It does not diagnose, prescribe, or replace a doctor or pharmacist. Do not enter your name, contact details, medical records, or other identifying information. For a medical emergency in the US, call 911.</div>
         </div>
         <aside class="hero-card" aria-label="Example dashboard summary">
           <div class="card-label">SAMPLE OPERATIONS SNAPSHOT · FICTIONAL</div>
@@ -38,7 +38,7 @@
     </section>
     <section class="section wrap" id="features">
       <h2>What this project explores</h2>
-      <p class="section-intro">A practical portfolio project built around common clinic-administration ideas. The existing PHP/MySQL application is legacy code and needs further engineering before any public interactive deployment.</p>
+      <p class="section-intro">A portfolio project with a general health-information chatbot for educational questions about common symptoms, everyday self-care, and over-the-counter medicine safety. It does not provide diagnosis, treatment, or personal dosing advice.</p>
       <div class="features">
         <article class="feature"><div class="icon" aria-hidden="true">📅</div><h3>Appointment flow</h3><p>Explore a simple path for organizing bookings and their statuses.</p></article>
         <article class="feature"><div class="icon" aria-hidden="true">🧑‍⚕️</div><h3>Team workflows</h3><p>See how doctor, patient, and administrator tasks can be separated conceptually.</p></article>
@@ -97,13 +97,13 @@
   </style>
   <button class="careflow-chat-launcher" id="careflow-chat-open" type="button" aria-controls="careflow-chat" aria-expanded="false">💬 Ask Careflow AI</button>
   <section class="careflow-chat" id="careflow-chat" role="dialog" aria-label="Careflow AI chat" aria-modal="false">
-    <div class="careflow-chat-head"><div><strong>Careflow AI Assistant</strong><small>Website and project questions</small></div><button class="careflow-chat-close" id="careflow-chat-close" type="button" aria-label="Close chat">×</button></div>
-    <div class="careflow-chat-notice">Demo assistant only. Do not share personal or medical information. It cannot diagnose, recommend treatment, or handle emergencies.</div>
+    <div class="careflow-chat-head"><div><strong>Careflow Health Information</strong><small>General symptom and medicine education</small></div><button class="careflow-chat-close" id="careflow-chat-close" type="button" aria-label="Close chat">×</button></div>
+    <div class="careflow-chat-notice">Educational information only—not diagnosis or treatment. Do not enter your name or identifying details. For emergencies in the US, call 911.</div>
     <div class="careflow-chat-log" id="careflow-chat-log" role="log" aria-live="polite" aria-relevant="additions">
-      <div class="careflow-chat-msg">Hi! I can answer questions about this Careflow demo, its features, and general software concepts. What would you like to know?</div>
+      <div class="careflow-chat-msg">Hello! I can share general information about common symptoms, self-care, and over-the-counter medicine labels. I cannot diagnose you or choose a medicine or dose for you. What would you like to learn about?</div>
     </div>
     <form class="careflow-chat-form" id="careflow-chat-form">
-      <input id="careflow-chat-input" type="text" maxlength="1200" placeholder="Ask about the Careflow project…" autocomplete="off" aria-label="Your message" required>
+      <input id="careflow-chat-input" type="text" maxlength="1200" placeholder="Ask a general health question…" autocomplete="off" aria-label="Your message" required>
       <button id="careflow-chat-send" type="submit">Send</button>
     </form>
   </section>
