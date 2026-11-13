@@ -25,7 +25,7 @@
           <h1>Hospital workflows, made <span>clearer.</span></h1>
           <p class="lead">A software project exploring how a small clinic can organize appointments, teams, and patient-service workflows in one place. This public page is a portfolio showcase—not a healthcare service.</p>
           <div class="actions"><a class="button primary" href="#demo">Try the sample interaction</a><a class="button" href="https://github.com/utasar/hospital-management">View source on GitHub</a></div>
-          <div class="notice"><strong>Demo only:</strong> This project is not for real medical records, diagnosis, treatment, or emergency use. Use fictional information only. No information entered on this showcase page is sent or saved.</div>
+          <div class="notice"><strong>Health information only:</strong> Careflow shares general educational information about symptoms and medicines. It does not diagnose, prescribe, or replace a doctor or pharmacist. Do not enter your name, contact details, medical records, or other identifying information. For a medical emergency in the US, call 911.</div>
         </div>
         <aside class="hero-card" aria-label="Example dashboard summary">
           <div class="card-label">SAMPLE OPERATIONS SNAPSHOT · FICTIONAL</div>
@@ -38,7 +38,7 @@
     </section>
     <section class="section wrap" id="features">
       <h2>What this project explores</h2>
-      <p class="section-intro">A practical portfolio project built around common clinic-administration ideas. The existing PHP/MySQL application is legacy code and needs further engineering before any public interactive deployment.</p>
+      <p class="section-intro">A portfolio project with a general health-information chatbot for educational questions about common symptoms, everyday self-care, and over-the-counter medicine safety. It does not provide diagnosis, treatment, or personal dosing advice.</p>
       <div class="features">
         <article class="feature"><div class="icon" aria-hidden="true">📅</div><h3>Appointment flow</h3><p>Explore a simple path for organizing bookings and their statuses.</p></article>
         <article class="feature"><div class="icon" aria-hidden="true">🧑‍⚕️</div><h3>Team workflows</h3><p>See how doctor, patient, and administrator tasks can be separated conceptually.</p></article>
@@ -68,12 +68,77 @@
       <div class="notice"><strong>Privacy:</strong> Do not submit symptoms, medical records, passwords, payment-card information, or other private information through this site, GitHub issues, or public feedback. For urgent health needs, contact local emergency services or a licensed healthcare professional.</div>
     </section>
   </main>
-  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Utsav Acharya · Software project showcase</span><span><a href="https://github.com/utasar/hospital-management">Source repository</a> · No patient data collected here</span></div></footer>
+  <footer class="footer"><div class="wrap footer-inner"><span>© <span id="year"></span> Utsav Acharya · Software project showcase</span><span><a href="https://github.com/utasar/hospital-management">Source repository</a> · Do not share private health information</span></div></footer>
   <script>
     document.getElementById('sample-book').addEventListener('click', function () {
       document.getElementById('sample-result').textContent = 'Demo only: sample appointment noted locally—nothing was booked or saved.';
     });
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+
+  <style>
+    .careflow-chat-launcher{position:fixed;right:24px;bottom:24px;z-index:1000;border:0;border-radius:999px;background:#2269e8;color:#fff;padding:15px 20px;font:700 15px/1.2 inherit;box-shadow:0 12px 32px #10233f35;cursor:pointer}
+    .careflow-chat-launcher:focus-visible,.careflow-chat button:focus-visible,.careflow-chat input:focus-visible{outline:3px solid #b9f4dc;outline-offset:3px}
+    .careflow-chat{position:fixed;right:24px;bottom:88px;z-index:1001;width:min(390px,calc(100vw - 32px));height:min(570px,calc(100dvh - 120px));display:none;flex-direction:column;overflow:hidden;border:1px solid #dce5f0;border-radius:18px;background:#fff;box-shadow:0 24px 70px #10233f35}
+    .careflow-chat.open{display:flex}
+    .careflow-chat-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:#10233f;color:#fff}
+    .careflow-chat-head strong{display:block;font-size:1rem}.careflow-chat-head small{color:#c5d6ed}
+    .careflow-chat-close{border:0;background:transparent;color:#fff;font-size:24px;cursor:pointer}
+    .careflow-chat-notice{padding:9px 14px;background:#fff7e8;color:#5a4729;font-size:.76rem;line-height:1.4}
+    .careflow-chat-log{flex:1;overflow:auto;padding:14px;background:#f5f8fc}
+    .careflow-chat-msg{max-width:88%;margin:0 0 12px;padding:10px 12px;border-radius:13px;background:#fff;border:1px solid #e4ebf3;white-space:pre-wrap;overflow-wrap:anywhere;font-size:.9rem}
+    .careflow-chat-msg.user{margin-left:auto;background:#e8f1ff;border-color:#cfe0ff}
+    .careflow-chat-msg.pending{color:#607187;font-style:italic}
+    .careflow-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid #e4ebf3;background:#fff}
+    .careflow-chat-form input{min-width:0;flex:1;padding:11px 12px;border:1px solid #d5deea;border-radius:10px;font:inherit}
+    .careflow-chat-form button{border:0;border-radius:10px;background:#2269e8;color:#fff;padding:0 15px;font-weight:700;cursor:pointer}
+    .careflow-chat-form button:disabled{opacity:.55;cursor:wait}
+    @media(max-width:480px){.careflow-chat{right:12px;bottom:80px;width:calc(100vw - 24px);height:min(590px,calc(100dvh - 100px))}.careflow-chat-launcher{right:16px;bottom:16px}}
+  </style>
+  <button class="careflow-chat-launcher" id="careflow-chat-open" type="button" aria-controls="careflow-chat" aria-expanded="false">💬 Ask Careflow AI</button>
+  <section class="careflow-chat" id="careflow-chat" role="dialog" aria-label="Careflow AI chat" aria-modal="false">
+    <div class="careflow-chat-head"><div><strong>Careflow Health Information</strong><small>General symptom and medicine education</small></div><button class="careflow-chat-close" id="careflow-chat-close" type="button" aria-label="Close chat">×</button></div>
+    <div class="careflow-chat-notice">Educational information only—not diagnosis or treatment. Messages are sent to an AI provider to generate replies. Do not enter names, contact details, records, or other identifying information. For emergencies in the US, call 911.</div>
+    <div class="careflow-chat-log" id="careflow-chat-log" role="log" aria-live="polite" aria-relevant="additions">
+      <div class="careflow-chat-msg">Hello! I can share general information about common symptoms, self-care, and over-the-counter medicine labels. I cannot diagnose you or choose a medicine or dose for you. What would you like to learn about?</div>
+    </div>
+    <form class="careflow-chat-form" id="careflow-chat-form">
+      <input id="careflow-chat-input" type="text" maxlength="1200" placeholder="Ask a general health question…" autocomplete="off" aria-label="Your message" required>
+      <button id="careflow-chat-send" type="submit">Send</button>
+    </form>
+  </section>
+  <script>
+    // Set this to the deployed Vercel function URL after deployment.
+    const CAREflow_CHAT_API = 'https://YOUR-VERCEL-PROJECT.vercel.app/api/chat';
+    (function(){
+      const panel=document.getElementById('careflow-chat');
+      const openButton=document.getElementById('careflow-chat-open');
+      const closeButton=document.getElementById('careflow-chat-close');
+      const form=document.getElementById('careflow-chat-form');
+      const input=document.getElementById('careflow-chat-input');
+      const send=document.getElementById('careflow-chat-send');
+      const log=document.getElementById('careflow-chat-log');
+      const history=[];
+      function toggle(open){panel.classList.toggle('open',open);openButton.setAttribute('aria-expanded',String(open));if(open)input.focus();}
+      function addMessage(text,who,extra){const node=document.createElement('div');node.className='careflow-chat-msg '+who+(extra?' '+extra:'');node.textContent=text;log.appendChild(node);log.scrollTop=log.scrollHeight;return node;}
+      openButton.addEventListener('click',()=>toggle(!panel.classList.contains('open')));
+      closeButton.addEventListener('click',()=>toggle(false));
+      form.addEventListener('submit',async function(event){
+        event.preventDefault();const message=input.value.trim();if(!message||send.disabled)return;
+        if(CAREflow_CHAT_API.includes('YOUR-')||!CAREflow_CHAT_API.startsWith('https://')){addMessage('The AI service has not been connected yet. Please check the deployment setup instructions.','bot');return;}
+        addMessage(message,'user');history.push({role:'user',content:message});input.value='';send.disabled=true;
+        const pending=addMessage('Thinking…','bot','pending');
+        try{
+          const response=await fetch(CAREflow_CHAT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-10)})});
+          const data=await response.json().catch(()=>({}));
+          if(!response.ok)throw new Error(data.error||'The assistant is temporarily unavailable.');
+          const answer=String(data.reply||'I could not generate a response. Please try again.');
+          pending.remove();addMessage(answer,'bot');history.push({role:'assistant',content:answer});
+        }catch(error){pending.remove();addMessage(error.message||'Connection error. Please try again later.','bot');history.pop();}
+        finally{send.disabled=false;input.focus();}
+      });
+    })();
+  </script>
+
 </body>
 </html>
