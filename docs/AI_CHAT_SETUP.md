@@ -24,8 +24,10 @@ The endpoint currently allows the GitHub Pages origin `https://utasar.github.io`
 
 ## Important limits and safety
 
-- The chat is a portfolio demo for questions about the Careflow website and general software topics, not a medical assistant.
-- Do not enter patient details, symptoms, health records, passwords, or payment information.
+- The chat is a general health-information education demo. It can explain common symptoms, low-risk self-care, and OTC medicine label concepts, but it must not diagnose, prescribe, select an individual medicine, or calculate a personal dose.
+- Emergency symptoms must be directed to 911 in the US (or the local emergency number elsewhere).
+- Do not enter names, contact details, patient details, medical records, passwords, or payment information.
+- The API uses OpenAI web search for current health information. The assistant is instructed to prefer authoritative public-health sources such as MedlinePlus/NIH, FDA, CDC, NHS, and major academic medical centers.
 - The API key is read only by the server from Vercel environment variables.
 - The included in-memory request limit is a lightweight safeguard, not a production-grade abuse-control system; Vercel serverless instances may not share counters. Set provider spending limits and usage alerts, and add a persistent rate limiter before broad public promotion.
 - The public GitHub Pages showcase and the legacy PHP/MySQL hospital application remain separate. Do not expose the legacy application or use it with real patient data.
