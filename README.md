@@ -1,86 +1,58 @@
-# Hospital Management System
+# Hospital Management System — Demo Project
 
-This project is a hospital management application with patient, doctor, admin, appointment, billing, treatment, and prescription workflows. It has been upgraded to a more production-friendly foundation for real-world business use, but it still requires a secure hosting environment, a proper database setup, and user testing before it is ready for live hospital operations.
+A legacy PHP/MySQL hospital-management **demo and learning project**. It contains example patient, doctor, appointment, billing, and prescription workflows. It is not a production-ready medical records system and must not be used to store real patient data or make clinical decisions.
 
-## What was improved
+## Run locally for a project demo
 
-- Removed direct hardcoded production assumptions from the database configuration.
-- Added environment-based configuration via `.env.example` and `config.php`.
-- Added a security helper file for safer app usage.
-- Hardened the main login flows against SQL injection by switching to prepared statements.
-- Added a `.gitignore` to keep environment secrets out of source control.
-- Documented a more realistic setup and deployment workflow.
+Use a disposable local machine or isolated staging environment. Do not use a public server or real patient information for this setup.
 
-## Important note
+1. Install PHP with the `mysqli` extension and MySQL/MariaDB. The original codebase is legacy; check for PHP warnings/errors and test all flows on your actual runtime before presenting it.
+2. Create a fresh database and a dedicated local user. Do not use the MySQL `root` account for the app:
 
-This is not yet a full commercial SaaS product. It is a stronger foundation for one, but real-world healthcare deployment still requires:
+   ```sql
+   CREATE DATABASE ohmsphp CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   CREATE USER 'hms_demo'@'localhost' IDENTIFIED BY 'replace-with-a-long-local-password';
+   GRANT ALL PRIVILEGES ON ohmsphp.* TO 'hms_demo'@'localhost';
+   FLUSH PRIVILEGES;
+   ```
 
-- secure password hashing
-- role-based access enforcement
-- audit logging
-- SSL/HTTPS everywhere
-- compliance review for medical data
-- automated tests and CI/CD
-- backup and recovery procedures
-- business-specific workflow validation
+3. Create your private environment file and edit the database values. `.env` is ignored by Git and should never be committed:
 
-## Local setup
+   ```bash
+   cp .env.example .env
+   ```
 
-1. Copy `.env.example` to `.env` and adjust values:
+4. Import the sample schema into the **fresh demo database only**:
 
-```bash
-cp .env.example .env
-```
+   ```bash
+   mysql -u hms_demo -p ohmsphp < "DATABASE FILE/ohmsphp.sql"
+   mysql -u hms_demo -p ohmsphp < "DATABASE FILE/ai_features_schema.sql"
+   ```
 
-2. Create the MySQL database and import the schema:
+5. Run the preflight check and start PHP's local development server:
 
-```bash
-mysql -u root -p
-CREATE DATABASE ohmsphp;
-SOURCE "DATABASE FILE/ohmsphp.sql";
-```
+   ```bash
+   php tools/preflight.php
+   php -S 127.0.0.1:8000
+   ```
 
-3. Update your local web server to point to the project folder.
+6. Open `http://127.0.0.1:8000`. Test the admin, doctor, patient, appointment, and AI information pages with fictional demo data before presenting.
 
-4. Open the app in a browser, for example:
+If database import or startup fails, check your PHP/MySQL versions and logs. The preflight check verifies basic prerequisites; it does not prove every feature works.
 
-```text
-http://localhost/
-```
+## Before publishing the demo
 
-## Production deployment checklist
+- **Do not publish a live instance with the sample database.** The SQL dump contains demo identities, contact details, and plaintext default passwords. Treat all included records as public, non-private sample data. Replace/remove them before hosting and never reuse the listed credentials.
+- The database schema includes fields for card numbers and CVVs. Do not enter real payment card data; never store CVVs. Use a payment provider's hosted checkout if you add payments.
+- Review all existing pages before exposing them publicly. This old application has legacy SQL, authorization, upload, and session patterns outside the limited changes in this branch.
+- The login updates are not a complete authentication redesign; existing database passwords are stored in plaintext. Do not use real accounts or passwords.
+- Use HTTPS, restricted database permissions, backups, logging, and a security review for any internet-hosted demo. A public code repository is not a safe place for secrets or patient data.
+- The AI pages are a rules-based demo, not medical AI: no diagnosis, medication, or treatment decisions. Keyword emergency warnings are incomplete and are not triage.
 
-- Use a dedicated MySQL user instead of `root`
-- Store secrets in environment variables, never in source code
-- Enable HTTPS and secure cookies
-- Add strong password policies and session handling
-- Restrict admin access to trusted IPs or VPN
-- Add backups and database replication for business continuity
-- Review billing, patient records, and data retention rules
+## Publishing the code
 
-## Default admin login
+This branch is a preparation for review, not a release certification. Review changes, run the preflight check, test the site locally, replace sample content and credentials, confirm you have rights to publish the code/assets, and then merge/publish the branch. Keep `.env` private.
 
-The project still contains demo default credentials in the sample database. Replace these before any live deployment.
+## Current limitations
 
-## Project structure
-
-- `dbconnection.php` - database connection wrapper
-- `config.php` - centralized application configuration
-- `security.php` - sanitization and escaping helpers
-- `adminlogin.php`, `doctorlogin.php`, `patientlogin.php` - user auth entry points
-- `DATABASE FILE/ohmsphp.sql` - sample database schema
-
-## Recommended next steps
-
-1. Replace demo login credentials.
-2. Add password hashing with `password_hash` and `password_verify`.
-3. Separate admin, doctor, and patient permissions into a clean access control layer.
-4. Add hospital workflows for billing, pharmacy, labs, appointments, and reporting.
-5. Add automated tests and CI/CD before production rollout.
-
-## Technology stack
-
-- PHP
-- MySQL
-- HTML/CSS/JavaScript
-- Bootstrap-based UI
+This repository is an old, multi-page PHP application. This setup improves local configuration and documents safe demo usage, but does not comprehensively modernize every page, guarantee compatibility with current PHP, provide complete automated tests, or establish healthcare compliance. Do not use it as a real hospital service.
