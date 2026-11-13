@@ -1,0 +1,9 @@
+{
+  "name": "hospital-management-showcase",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.8.0"
+  }
+}

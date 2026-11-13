@@ -5,6 +5,7 @@
 
 # Dependencies and generated files
 /vendor/
+/node_modules/
 *.log
 php_errors.log
 .DS_Store
