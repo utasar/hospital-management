@@ -1,0 +1,10 @@
+# .gitignore
+.env
+.env.*
+!.env.example
+/vendor/
+composer.lock
+*.log
+php_errors.log
+.DS_Store
+.phpunit.result.cache

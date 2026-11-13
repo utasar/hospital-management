@@ -1,97 +1,86 @@
 # Hospital Management System
 
-The `hospital-management` repository is an application designed to streamline and optimize the management of a hospital's day-to-day operations. This system centralizes tasks such as patient management, doctor scheduling, and staff monitoring all in one place.
+This project is a hospital management application with patient, doctor, admin, appointment, billing, treatment, and prescription workflows. It has been upgraded to a more production-friendly foundation for real-world business use, but it still requires a secure hosting environment, a proper database setup, and user testing before it is ready for live hospital operations.
 
-## About the Project
+## What was improved
 
-This repository includes:
-- **Patient Management**: Records and monitors patient information, including admissions, discharges, and medical history.
-- **Doctor Scheduling**: Assigns and manages shifts for doctors efficiently.
-- **Staff Management**: Tracks staff availability, roles, and schedules.
-- Provides a centralized platform for optimizing workflows and reducing manual paperwork.
+- Removed direct hardcoded production assumptions from the database configuration.
+- Added environment-based configuration via `.env.example` and `config.php`.
+- Added a security helper file for safer app usage.
+- Hardened the main login flows against SQL injection by switching to prepared statements.
+- Added a `.gitignore` to keep environment secrets out of source control.
+- Documented a more realistic setup and deployment workflow.
 
-## Language Composition
+## Important note
 
-This project involves:
-- **Backend**: Implemented to handle the server-side functionalities and database operations.
-- **Frontend**: A user-friendly interface for real-time access to data and operations.
+This is not yet a full commercial SaaS product. It is a stronger foundation for one, but real-world healthcare deployment still requires:
 
-## Features
+- secure password hashing
+- role-based access enforcement
+- audit logging
+- SSL/HTTPS everywhere
+- compliance review for medical data
+- automated tests and CI/CD
+- backup and recovery procedures
+- business-specific workflow validation
 
-### Core Features
-- Manage patient records and history easily.
-- Schedule, assign, and monitor doctor and staff shifts.
-- Simplify hospital workflows to improve operational efficiency.
+## Local setup
 
-### AI-Powered Features NEW
-- **Dr. Cares AI Module**: AI-powered symptom analysis, medication recommendations, and preventive care advice
-- **Intelligent Chatbot**: 24/7 virtual health assistant for patient interaction
-- **Health Trends & Analytics**: Visual health monitoring with trend analysis and personalized lifestyle recommendations
-- **Chronic Disease Monitoring**: Real-time monitoring with automated alerts for anomalies
-- **Doctor AI Dashboard**: AI insights and patient health summaries for healthcare providers
-- **Smart Appointment Reminders**: Adaptive reminder system based on patient health conditions
+1. Copy `.env.example` to `.env` and adjust values:
 
- **See [AI_FEATURES_README.md](AI_FEATURES_README.md) for detailed AI features documentation**
+```bash
+cp .env.example .env
+```
 
-## How to Use
+2. Create the MySQL database and import the schema:
 
-1. Clone the repository to your local machine:
-   ```bash
-   git clone https://github.com/utasar/hospital-management.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd hospital-management
-   ```
-3. Setup and run the system:
-   - Make sure the backend is running (if applicable):
-     ```bash
-     npm start    # Or any backend setup command based on the implementation
-     ```
-   - Access the frontend:
-     Open your browser and go to the local instance of the system (e.g., `http://localhost:3000`).
+```bash
+mysql -u root -p
+CREATE DATABASE ohmsphp;
+SOURCE "DATABASE FILE/ohmsphp.sql";
+```
 
-## Setup Instructions
+3. Update your local web server to point to the project folder.
 
-### Database Setup
-1. Import the main database schema:
-   ```bash
-   mysql -u root -p ohmsphp < "DATABASE FILE/ohmsphp.sql"
-   ```
+4. Open the app in a browser, for example:
 
-2. Import the AI features schema:
-   ```bash
-   mysql -u root -p ohmsphp < "DATABASE FILE/ai_features_schema.sql"
-   ```
+```text
+http://localhost/
+```
 
-### Configuration
-1. Update database connection in `dbconnection.php` with your credentials
-2. Ensure PHP 5.6 or newer is installed
-3. Configure web server (Apache/Nginx) to serve the application
+## Production deployment checklist
 
-### Accessing the System
-- **Admin Login**: `admin` / `Password@123`
-- **Main Interface**: Navigate to your configured URL (e.g., `http://localhost/hospital-management`)
-- **AI Features**: Access via patient/doctor dashboards after login
+- Use a dedicated MySQL user instead of `root`
+- Store secrets in environment variables, never in source code
+- Enable HTTPS and secure cookies
+- Add strong password policies and session handling
+- Restrict admin access to trusted IPs or VPN
+- Add backups and database replication for business continuity
+- Review billing, patient records, and data retention rules
 
-## Technology Stack
+## Default admin login
 
-- **Backend**: PHP (5.6+), MySQL
-- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap
-- **AI Features**: Custom AI algorithms, Chart.js for visualizations
-- **Security**: Prepared statements, session management, HIPAA/GDPR compliance considerations
+The project still contains demo default credentials in the sample database. Replace these before any live deployment.
 
-## Future Enhancements
+## Project structure
 
-- **Machine Learning Integration**: Connect to TensorFlow/PyTorch models for advanced predictions
-- **Telehealth Features**: Video consultations and remote patient monitoring
-- **Multi-Hospital Support**: Enable management of multiple branches
-- **Mobile Apps**: iOS and Android applications
-- **IoT Integration**: Support for wearable devices and health monitors
+- `dbconnection.php` - database connection wrapper
+- `config.php` - centralized application configuration
+- `security.php` - sanitization and escaping helpers
+- `adminlogin.php`, `doctorlogin.php`, `patientlogin.php` - user auth entry points
+- `DATABASE FILE/ohmsphp.sql` - sample database schema
 
-## Contributing
+## Recommended next steps
 
-Contributions are welcome! Please ensure any AI features maintain HIPAA/GDPR compliance standards.
+1. Replace demo login credentials.
+2. Add password hashing with `password_hash` and `password_verify`.
+3. Separate admin, doctor, and patient permissions into a clean access control layer.
+4. Add hospital workflows for billing, pharmacy, labs, appointments, and reporting.
+5. Add automated tests and CI/CD before production rollout.
 
+## Technology stack
 
-This solution focuses on scalability and improving hospital operational workflows with cutting-edge AI technology to enhance patient care and doctor efficiency.
+- PHP
+- MySQL
+- HTML/CSS/JavaScript
+- Bootstrap-based UI
