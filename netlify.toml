@@ -1,0 +1,12 @@
+# This repository holds a legacy PHP/MySQL app (which Netlify cannot run) and a
+# static portfolio showcase in docs/. Only the static showcase is published, so
+# PHP source, config files, and the SQL dump are never served publicly.
+# The AI chat endpoint (/api/chat) runs as a Netlify Server from netlify/server/.
+[build]
+  publish = "docs"
+  # No build step is needed; this overrides the Jekyll command set in the UI.
+  command = "echo 'No build step: publishing static showcase from docs/'"
+
+[dev]
+  # Serve docs/ as plain static files locally (the repo is not a Jekyll site).
+  framework = "#static"
